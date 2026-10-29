@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+settings.json
+*.log
+.dictation.lock
+backups/
+.DS_Store
