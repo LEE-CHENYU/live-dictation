@@ -23,6 +23,8 @@ for s in 16 32 128 256 512; do
 done
 iconutil -c icns "$BUILD/AppIcon.iconset" -o "$APP/Contents/Resources/AppIcon.icns"
 cp macos-app/Info.plist "$APP/Contents/Info.plist"
+# macOS ties permissions to the bundle id: keep an existing install's id with BUNDLE_ID=<id>
+if [ -n "${BUNDLE_ID:-}" ]; then plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"; fi
 codesign --force --sign - "$APP"
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$APP"
 rm -rf "$BUILD"

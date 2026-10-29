@@ -25,7 +25,10 @@ open ~/Applications/"Live Dictation.app"
 
 Add the app to **System Settings > General > Login Items** (or use the `osascript` line `build_app.sh`
 prints) so it starts at login. Grant it **Accessibility** (to paste), **Input Monitoring** (to see the key)
-and **Microphone**; reopen it afterwards. Rebuilding changes the ad-hoc signature, so macOS may ask again.
+and **Microphone**; reopen it afterwards. Rebuilding changes the ad-hoc signature, so macOS may ask again. On macOS 27 Accessibility is listed
+as **Device Control and Data Access**. If the app won't appear there after **+**, an older install with a
+different bundle id may still hold the entry: rebuild with `BUNDLE_ID=<old id> ./build_app.sh`, or run
+`tccutil reset Accessibility <old id>` while that id is installed.
 
 ### Why a compiled launcher
 
